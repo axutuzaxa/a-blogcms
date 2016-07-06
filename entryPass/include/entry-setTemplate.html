@@ -1,0 +1,21 @@
+<!-- ## パスワードが設定されている場合は入力フォームを表示 -->
+<!-- BEGIN_SetTemplate id="body-pass" -->
+<!-- BEGIN_MODULE Touch_NotEdit -->
+<!-- BEGIN_IF [{entryPass}/nem/_and_/%{pass}/neq/{entryPass}] -->
+<p>このコンテンツはパスワードで保護されています。閲覧するには以下にパスワードを入力してください。</p>
+<form action="{titleUrl}?pass=%{pass}" method="get" class="acms-form">
+<!--#include file="/contact/form/input.html"-->
+<input type="password" name="pass" value="%{pass}" />
+<input type="submit" value="認証" class="acms-btn" />
+</form>
+<!-- BEGIN_IF [%{pass}/nem] -->
+パスワードが間違っています
+<!-- END_IF -->
+<!-- END_IF -->
+<!-- END_MODULE Touch_NotEdit -->
+ 
+<!-- ## パスワードが合ってるか未設定の場合にエントリーを表示 -->
+<!-- BEGIN_IF [%{pass}/eq/{entryPass}/_or_/{entryPass}/em] -->
+<!--#include file="/include/unit.html"-->
+<!-- END_IF -->
+<!-- END_SetTemplate -->
